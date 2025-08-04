@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(250, 24%, 98%);
+  --foreground: hsl(220, 14%, 11%);
+  --muted: hsl(210, 40%, 98%);
+  --muted-foreground: hsl(215, 16%, 47%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(220, 14%, 11%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(220, 14%, 11%);
+  --border: hsl(220, 13%, 91%);
+  --input: hsl(220, 13%, 91%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(210, 40%, 96%);
+  --secondary-foreground: hsl(220, 9%, 46%);
+  --accent: hsl(210, 40%, 96%);
+  --accent-foreground: hsl(220, 9%, 46%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(207, 90%, 54%);
+  --radius: 0.5rem;
+  
+  /* Custom portfolio colors */
+  --electric-blue: hsl(207, 100%, 50%);
+  --purple-glow: hsl(275, 69%, 59%);
+  --soft-cyan: hsl(197, 87%, 68%);
+  --neon-pink: hsl(327, 100%, 59%);
+  --dark-bg: hsl(222, 84%, 4%);
+  --light-bg: hsl(210, 20%, 98%);
+  --dark-card: hsl(224, 71%, 11%);
+  --light-card: hsl(0, 0%, 100%);
+  --dark-gray: hsl(215, 28%, 17%);
+  --light-gray: hsl(220, 14%, 96%);
+}
+
+.dark {
+  --background: hsl(222, 84%, 4%);
+  --foreground: hsl(210, 40%, 98%);
+  --muted: hsl(217, 33%, 17%);
+  --muted-foreground: hsl(215, 20%, 65%);
+  --popover: hsl(222, 84%, 4%);
+  --popover-foreground: hsl(210, 40%, 98%);
+  --card: hsl(222, 84%, 4%);
+  --card-foreground: hsl(210, 40%, 98%);
+  --border: hsl(217, 33%, 17%);
+  --input: hsl(217, 33%, 17%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(222, 84%, 4%);
+  --secondary: hsl(217, 33%, 17%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --accent: hsl(217, 33%, 17%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 63%, 31%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(207, 90%, 54%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground overflow-x-hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .glassmorphism {
+    @apply bg-white/10 dark:bg-black/30 backdrop-blur-[10px] border border-white/10;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, var(--electric-blue), var(--purple-glow), var(--soft-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .neon-glow {
+    box-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
+  }
+  
+  .dark .neon-glow {
+    box-shadow: 0 0 25px rgba(0, 122, 255, 0.5);
+  }
+  
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dark .hover-lift:hover {
+    box-shadow: 0 20px 40px rgba(0, 122, 255, 0.15);
+  }
+  
+  .skill-progress {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .skill-progress::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+  
+  .typing-animation {
+    overflow: hidden;
+    border-right: 2px solid var(--electric-blue);
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    0% { width: 0; }
+    100% { width: 100%; }
+  }
+  
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--electric-blue); }
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    0% { box-shadow: 0 0 20px rgba(0, 122, 255, 0.5); }
+    100% { box-shadow: 0 0 30px rgba(0, 122, 255, 0.8); }
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 122, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 122, 255, 0.5);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
