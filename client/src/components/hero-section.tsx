@@ -45,8 +45,8 @@ export function HeroSection() {
         {/* Profile Photo */}
         <div className="mb-8 animate-fade-in">
           <img 
-            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&h=300" 
-            alt="Alex Chen Profile Photo" 
+            src="https://breakthrough.neliti.com/wp-content/uploads/2022/07/final5d2-980x1024.jpg" 
+            alt="Nurali Vafoyev Profile Photo" 
             className="w-32 h-32 rounded-full mx-auto border-4 border-white/20 shadow-2xl hover:scale-105 transition-transform duration-500 neon-glow"
           />
         </div>

@@ -5,7 +5,7 @@ export const translations = {
     'nav.skills': 'Skills',
     'nav.contact': 'Contact',
     'nav.theme': 'Theme',
-    'hero.name': 'Nurali vafoyev',
+    'hero.name': 'Nurali Vafoyev',
     'hero.title': 'Frontend Developer & UI/UX Enthusiast',
     'hero.description': 'Crafting beautiful, performant web experiences with modern technologies. Passionate about clean code and exceptional user interfaces.',
     'hero.viewWork': 'View My Work',
