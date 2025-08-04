@@ -1,0 +1,1152 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Chen - Frontend Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'electric-blue': '#007AFF',
+                        'purple-glow': '#AF52DE',
+                        'soft-cyan': '#32D4F4',
+                        'neon-pink': '#FF2D92',
+                        'dark-bg': '#0A0A0A',
+                        'light-bg': '#FAFAFA',
+                        'dark-card': '#1C1C1E',
+                        'light-card': '#FFFFFF',
+                        'dark-gray': '#2C2C2E',
+                        'light-gray': '#F2F2F7'
+                    },
+                    fontFamily: {
+                        'sf-pro': ['-apple-system', 'BlinkMacSystemFont', 'Inter', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'float': 'float 3s ease-in-out infinite',
+                        'typing': 'typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(0, 122, 255, 0.5)' },
+                            '100%': { boxShadow: '0 0 30px rgba(0, 122, 255, 0.8)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        typing: {
+                            '0%': { width: '0' },
+                            '100%': { width: '100%' }
+                        }
+                    },
+                    backdropBlur: {
+                        'xs': '2px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .dark .glassmorphism {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #007AFF, #AF52DE, #32D4F4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
+        }
+        
+        .dark .neon-glow {
+            box-shadow: 0 0 25px rgba(0, 122, 255, 0.5);
+        }
+        
+        .typing-animation {
+            overflow: hidden;
+            border-right: 2px solid #007AFF;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #007AFF; }
+        }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .skill-progress {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-progress::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dark .hover-lift:hover {
+            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.15);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 122, 255, 0.3);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 122, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="font-sf-pro bg-light-bg dark:bg-dark-bg text-gray-900 dark:text-white transition-all duration-500 overflow-x-hidden">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glassmorphism backdrop-blur-lg transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <span class="text-2xl font-bold gradient-text">AC</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:text-electric-blue" data-translate="nav.home">Home</a>
+                        <a href="#projects" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:text-electric-blue" data-translate="nav.projects">Projects</a>
+                        <a href="#skills" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:text-electric-blue" data-translate="nav.skills">Skills</a>
+                        <a href="#contact" class="nav-link px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:text-electric-blue" data-translate="nav.contact">Contact</a>
+                    </div>
+                </div>
+                
+                <!-- Theme & Language Controls -->
+                <div class="flex items-center space-x-4">
+                    <!-- Language Switcher -->
+                    <div class="relative" id="languageDropdown">
+                        <button class="flex items-center space-x-2 px-3 py-2 rounded-lg glassmorphism hover:bg-opacity-20 transition-all duration-300">
+                            <span class="text-lg" id="currentFlag">🇺🇸</span>
+                            <span class="text-sm font-medium" id="currentLang">EN</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-32 glassmorphism rounded-lg shadow-lg opacity-0 invisible transition-all duration-300" id="languageMenu">
+                            <div class="py-1">
+                                <button class="lang-option w-full px-4 py-2 text-left hover:bg-white hover:bg-opacity-10 transition-all duration-200" data-lang="en">
+                                    <span class="mr-2">🇺🇸</span>English
+                                </button>
+                                <button class="lang-option w-full px-4 py-2 text-left hover:bg-white hover:bg-opacity-10 transition-all duration-200" data-lang="ru">
+                                    <span class="mr-2">🇷🇺</span>Русский
+                                </button>
+                                <button class="lang-option w-full px-4 py-2 text-left hover:bg-white hover:bg-opacity-10 transition-all duration-200" data-lang="uz">
+                                    <span class="mr-2">🇺🇿</span>O'zbek
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Theme Toggle -->
+                    <button id="themeToggle" class="p-2 rounded-lg glassmorphism hover:bg-opacity-20 transition-all duration-300">
+                        <i class="fas fa-moon dark:hidden text-lg"></i>
+                        <i class="fas fa-sun hidden dark:block text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-electric-blue/10 via-purple-glow/10 to-soft-cyan/10 dark:from-electric-blue/20 dark:via-purple-glow/20 dark:to-soft-cyan/20"></div>
+        <div class="absolute inset-0">
+            <div class="animate-float absolute top-20 left-10 w-20 h-20 bg-electric-blue/20 rounded-full blur-xl"></div>
+            <div class="animate-float absolute top-40 right-20 w-32 h-32 bg-purple-glow/20 rounded-full blur-xl" style="animation-delay: 1s;"></div>
+            <div class="animate-float absolute bottom-20 left-1/3 w-24 h-24 bg-soft-cyan/20 rounded-full blur-xl" style="animation-delay: 2s;"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <!-- Profile Photo -->
+            <div class="mb-8 animate-fade-in">
+                <!-- Professional headshot of a young Asian male developer in casual attire -->
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&h=300" 
+                     alt="Alex Chen Profile Photo" 
+                     class="w-32 h-32 rounded-full mx-auto border-4 border-white/20 shadow-2xl hover:scale-105 transition-transform duration-500 neon-glow">
+            </div>
+            
+            <!-- Name and Title -->
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 animate-slide-up">
+                <span class="gradient-text" data-translate="hero.name">Alex Chen</span>
+            </h1>
+            
+            <!-- Animated Typing Effect -->
+            <div class="text-xl md:text-2xl mb-8 h-8">
+                <span class="typing-animation" data-translate="hero.title">Frontend Developer & UI/UX Enthusiast</span>
+            </div>
+            
+            <!-- Description -->
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto animate-fade-in" style="animation-delay: 0.5s;" data-translate="hero.description">
+                Crafting beautiful, performant web experiences with modern technologies. Passionate about clean code and exceptional user interfaces.
+            </p>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style="animation-delay: 0.8s;">
+                <button class="px-8 py-4 bg-electric-blue text-white rounded-xl font-semibold hover:bg-electric-blue/90 transform hover:scale-105 transition-all duration-300 neon-glow" data-translate="hero.viewWork">
+                    <i class="fas fa-eye mr-2"></i>View My Work
+                </button>
+                <button class="px-8 py-4 glassmorphism rounded-xl font-semibold hover:bg-white hover:bg-opacity-20 transform hover:scale-105 transition-all duration-300" id="downloadResume" data-translate="hero.downloadResume">
+                    <i class="fas fa-download mr-2"></i>Download Resume
+                </button>
+            </div>
+            
+            <!-- Social Links -->
+            <div class="flex justify-center space-x-6 mt-12 animate-fade-in" style="animation-delay: 1s;">
+                <a href="#" class="text-2xl hover:text-electric-blue transform hover:scale-125 transition-all duration-300">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="text-2xl hover:text-electric-blue transform hover:scale-125 transition-all duration-300">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="text-2xl hover:text-electric-blue transform hover:scale-125 transition-all duration-300">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-2xl hover:text-electric-blue transform hover:scale-125 transition-all duration-300">
+                    <i class="fab fa-dribbble"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-2xl text-electric-blue"></i>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-translate="projects.title">Featured Projects</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto" data-translate="projects.subtitle">
+                    A collection of my recent work showcasing modern web development techniques and creative solutions.
+                </p>
+            </div>
+            
+            <!-- Project Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn px-6 py-3 rounded-xl glassmorphism font-medium transition-all duration-300 hover:bg-electric-blue hover:text-white" data-filter="all" data-translate="projects.filter.all">All</button>
+                <button class="filter-btn px-6 py-3 rounded-xl glassmorphism font-medium transition-all duration-300 hover:bg-electric-blue hover:text-white" data-filter="react" data-translate="projects.filter.react">React</button>
+                <button class="filter-btn px-6 py-3 rounded-xl glassmorphism font-medium transition-all duration-300 hover:bg-electric-blue hover:text-white" data-filter="javascript" data-translate="projects.filter.javascript">JavaScript</button>
+                <button class="filter-btn px-6 py-3 rounded-xl glassmorphism font-medium transition-all duration-300 hover:bg-electric-blue hover:text-white" data-filter="css" data-translate="projects.filter.css">CSS/HTML</button>
+            </div>
+            
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
+                <!-- Project Card 1 -->
+                <div class="project-card glassmorphism rounded-2xl overflow-hidden hover-lift transition-all duration-500" data-category="react">
+                    <div class="relative overflow-hidden">
+                        <!-- E-commerce web application interface showing modern design -->
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400" 
+                             alt="E-commerce React Application" 
+                             class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex space-x-2">
+                                    <a href="#" class="px-4 py-2 bg-white/20 rounded-lg backdrop-blur-sm text-white font-medium hover:bg-white/30 transition-all duration-300">
+                                        <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                                    </a>
+                                    <a href="#" class="px-4 py-2 bg-white/20 rounded-lg backdrop-blur-sm text-white font-medium hover:bg-white/30 transition-all duration-300">
+                                        <i class="fab fa-github mr-2"></i>Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2" data-translate="projects.project1.title">E-Commerce Platform</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-translate="projects.project1.description">
+                            A full-featured e-commerce platform built with React, featuring shopping cart, payment integration, and responsive design.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-electric-blue/20 text-electric-blue rounded-full text-sm font-medium">React</span>
+                            <span class="px-3 py-1 bg-purple-glow/20 text-purple-glow rounded-full text-sm font-medium">TypeScript</span>
+                            <span class="px-3 py-1 bg-soft-cyan/20 text-soft-cyan rounded-full text-sm font-medium">Tailwind CSS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 2 -->
+                <div class="project-card glassmorphism rounded-2xl overflow-hidden hover-lift transition-all duration-500" data-category="javascript">
+                    <div class="relative overflow-hidden">
+                        <!-- Task management dashboard with modern UI design -->
+                        <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400" 
+                             alt="Task Management Dashboard" 
+                             class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex space-x-2">
+                                    <a href="#" class="px-4 py-2 bg-white/20 rounded-lg backdrop-blur-sm text-white font-medium hover:bg-white/30 transition-all duration-300">
+                                        <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                                    </a>
+                                    <a href="#" class="px-4 py-2 bg-white/20 rounded-lg backdrop-blur-sm text-white font-medium hover:bg-white/30 transition-all duration-300">
+                                        <i class="fab fa-github mr-2"></i>Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2" data-translate="projects.project2.title">Task Management App</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-translate="projects.project2.description">
+                            A productivity app with drag-and-drop functionality, real-time updates, and intuitive user interface.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-electric-blue/20 text-electric-blue rounded-full text-sm font-medium">Vanilla JS</span>
+                            <span class="px-3 py-1 bg-purple-glow/20 text-purple-glow rounded-full text-sm font-medium">CSS Grid</span>
+                            <span class="px-3 py-1 bg-soft-cyan/20 text-soft-cyan rounded-full text-sm font-medium">Local Storage</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 3 -->
+                <div class="project-card glassmorphism rounded-2xl overflow-hidden hover-lift transition-all duration-500" data-category="css">
+                    <div class="relative overflow-hidden">
+                        <!-- Creative portfolio website with artistic layout -->
+                        <img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400" 
+                             alt="Creative Portfolio Website" 
+                             class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex space-x-2">
+                                    <a href="#" class="px-4 py-2 bg-white/20 rounded-lg backdrop-blur-sm text-white font-medium hover:bg-white/30 transition-all duration-300">
+                                        <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                                    </a>
+                                    <a href="#" class="px-4 py-2 bg-white/20 rounded-lg backdrop-blur-sm text-white font-medium hover:bg-white/30 transition-all duration-300">
+                                        <i class="fab fa-github mr-2"></i>Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2" data-translate="projects.project3.title">Creative Portfolio</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-translate="projects.project3.description">
+                            An artistic portfolio website showcasing advanced CSS animations and creative layouts.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-electric-blue/20 text-electric-blue rounded-full text-sm font-medium">CSS3</span>
+                            <span class="px-3 py-1 bg-purple-glow/20 text-purple-glow rounded-full text-sm font-medium">GSAP</span>
+                            <span class="px-3 py-1 bg-soft-cyan/20 text-soft-cyan rounded-full text-sm font-medium">HTML5</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 4 -->
+                <div class="project-card glassmorphism rounded-2xl overflow-hidden hover-lift transition-all duration-500" data-category="react">
+                    <div class="relative overflow-hidden">
+                        <!-- Social media dashboard interface -->
+                        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400" 
+                             alt="Social Media Dashboard" 
+                             class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex space-x-2">
+                                    <a href="#" class="px-4 py-2 bg-white/20 rounded-lg backdrop-blur-sm text-white font-medium hover:bg-white/30 transition-all duration-300">
+                                        <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                                    </a>
+                                    <a href="#" class="px-4 py-2 bg-white/20 rounded-lg backdrop-blur-sm text-white font-medium hover:bg-white/30 transition-all duration-300">
+                                        <i class="fab fa-github mr-2"></i>Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2" data-translate="projects.project4.title">Social Dashboard</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-translate="projects.project4.description">
+                            A comprehensive social media management dashboard with analytics and scheduling features.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-electric-blue/20 text-electric-blue rounded-full text-sm font-medium">React</span>
+                            <span class="px-3 py-1 bg-purple-glow/20 text-purple-glow rounded-full text-sm font-medium">Chart.js</span>
+                            <span class="px-3 py-1 bg-soft-cyan/20 text-soft-cyan rounded-full text-sm font-medium">API Integration</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 5 -->
+                <div class="project-card glassmorphism rounded-2xl overflow-hidden hover-lift transition-all duration-500" data-category="javascript">
+                    <div class="relative overflow-hidden">
+                        <!-- Weather application interface showing modern design -->
+                        <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400" 
+                             alt="Weather Application" 
+                             class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex space-x-2">
+                                    <a href="#" class="px-4 py-2 bg-white/20 rounded-lg backdrop-blur-sm text-white font-medium hover:bg-white/30 transition-all duration-300">
+                                        <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                                    </a>
+                                    <a href="#" class="px-4 py-2 bg-white/20 rounded-lg backdrop-blur-sm text-white font-medium hover:bg-white/30 transition-all duration-300">
+                                        <i class="fab fa-github mr-2"></i>Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2" data-translate="projects.project5.title">Weather App</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-translate="projects.project5.description">
+                            A beautiful weather application with location detection and detailed forecasts.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-electric-blue/20 text-electric-blue rounded-full text-sm font-medium">JavaScript</span>
+                            <span class="px-3 py-1 bg-purple-glow/20 text-purple-glow rounded-full text-sm font-medium">Weather API</span>
+                            <span class="px-3 py-1 bg-soft-cyan/20 text-soft-cyan rounded-full text-sm font-medium">Geolocation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 6 -->
+                <div class="project-card glassmorphism rounded-2xl overflow-hidden hover-lift transition-all duration-500" data-category="css">
+                    <div class="relative overflow-hidden">
+                        <!-- 3D CSS animation showcase -->
+                        <img src="https://images.unsplash.com/photo-1618477247222-acbdb0e159b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400" 
+                             alt="3D CSS Animation Showcase" 
+                             class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex space-x-2">
+                                    <a href="#" class="px-4 py-2 bg-white/20 rounded-lg backdrop-blur-sm text-white font-medium hover:bg-white/30 transition-all duration-300">
+                                        <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                                    </a>
+                                    <a href="#" class="px-4 py-2 bg-white/20 rounded-lg backdrop-blur-sm text-white font-medium hover:bg-white/30 transition-all duration-300">
+                                        <i class="fab fa-github mr-2"></i>Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2" data-translate="projects.project6.title">3D CSS Gallery</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4" data-translate="projects.project6.description">
+                            An interactive 3D gallery showcasing advanced CSS transforms and animations.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-electric-blue/20 text-electric-blue rounded-full text-sm font-medium">CSS3</span>
+                            <span class="px-3 py-1 bg-purple-glow/20 text-purple-glow rounded-full text-sm font-medium">3D Transforms</span>
+                            <span class="px-3 py-1 bg-soft-cyan/20 text-soft-cyan rounded-full text-sm font-medium">Animations</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-electric-blue/5 via-purple-glow/5 to-soft-cyan/5"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-translate="skills.title">Skills & Technologies</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto" data-translate="skills.subtitle">
+                    A comprehensive overview of my technical expertise and the tools I use to create exceptional web experiences.
+                </p>
+            </div>
+            
+            <!-- Skills Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Frontend Development -->
+                <div class="glassmorphism rounded-2xl p-8 hover-lift">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-electric-blue/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-code text-2xl text-electric-blue"></i>
+                        </div>
+                        <h3 class="text-xl font-bold" data-translate="skills.frontend.title">Frontend Development</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">React</span>
+                                <span class="text-sm text-gray-500">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-electric-blue h-2 rounded-full skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">JavaScript</span>
+                                <span class="text-sm text-gray-500">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-purple-glow h-2 rounded-full skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">TypeScript</span>
+                                <span class="text-sm text-gray-500">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-soft-cyan h-2 rounded-full skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Next.js</span>
+                                <span class="text-sm text-gray-500">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-neon-pink h-2 rounded-full skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Styling & Design -->
+                <div class="glassmorphism rounded-2xl p-8 hover-lift">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-purple-glow/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-palette text-2xl text-purple-glow"></i>
+                        </div>
+                        <h3 class="text-xl font-bold" data-translate="skills.styling.title">Styling & Design</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">CSS3</span>
+                                <span class="text-sm text-gray-500">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-electric-blue h-2 rounded-full skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Tailwind CSS</span>
+                                <span class="text-sm text-gray-500">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-purple-glow h-2 rounded-full skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">SASS/SCSS</span>
+                                <span class="text-sm text-gray-500">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-soft-cyan h-2 rounded-full skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Figma</span>
+                                <span class="text-sm text-gray-500">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-neon-pink h-2 rounded-full skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tools & Technologies -->
+                <div class="glassmorphism rounded-2xl p-8 hover-lift">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-soft-cyan/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-tools text-2xl text-soft-cyan"></i>
+                        </div>
+                        <h3 class="text-xl font-bold" data-translate="skills.tools.title">Tools & Technologies</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Git & GitHub</span>
+                                <span class="text-sm text-gray-500">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-electric-blue h-2 rounded-full skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Webpack</span>
+                                <span class="text-sm text-gray-500">75%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-purple-glow h-2 rounded-full skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Node.js</span>
+                                <span class="text-sm text-gray-500">70%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-soft-cyan h-2 rounded-full skill-progress" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Jest</span>
+                                <span class="text-sm text-gray-500">65%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                <div class="bg-neon-pink h-2 rounded-full skill-progress" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tech Stack Icons -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold text-center mb-8 gradient-text" data-translate="skills.techStack">Tech Stack</h3>
+                <div class="flex flex-wrap justify-center items-center gap-8">
+                    <div class="tech-icon group">
+                        <i class="fab fa-react text-4xl text-electric-blue group-hover:scale-125 transition-transform duration-300"></i>
+                    </div>
+                    <div class="tech-icon group">
+                        <i class="fab fa-js-square text-4xl text-yellow-400 group-hover:scale-125 transition-transform duration-300"></i>
+                    </div>
+                    <div class="tech-icon group">
+                        <i class="fab fa-html5 text-4xl text-orange-500 group-hover:scale-125 transition-transform duration-300"></i>
+                    </div>
+                    <div class="tech-icon group">
+                        <i class="fab fa-css3-alt text-4xl text-blue-500 group-hover:scale-125 transition-transform duration-300"></i>
+                    </div>
+                    <div class="tech-icon group">
+                        <i class="fab fa-sass text-4xl text-pink-500 group-hover:scale-125 transition-transform duration-300"></i>
+                    </div>
+                    <div class="tech-icon group">
+                        <i class="fab fa-node-js text-4xl text-green-500 group-hover:scale-125 transition-transform duration-300"></i>
+                    </div>
+                    <div class="tech-icon group">
+                        <i class="fab fa-git-alt text-4xl text-red-500 group-hover:scale-125 transition-transform duration-300"></i>
+                    </div>
+                    <div class="tech-icon group">
+                        <i class="fab fa-figma text-4xl text-purple-500 group-hover:scale-125 transition-transform duration-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-translate="contact.title">Get In Touch</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto" data-translate="contact.subtitle">
+                    Ready to collaborate on your next project? Let's create something amazing together.
+                </p>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="glassmorphism rounded-2xl p-8 md:p-12">
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-2" data-translate="contact.form.name">Name</label>
+                            <input type="text" id="name" name="name" required
+                                   class="w-full px-4 py-3 rounded-xl glassmorphism border-0 focus:ring-2 focus:ring-electric-blue transition-all duration-300 bg-white/10 dark:bg-black/20"
+                                   data-translate-placeholder="contact.form.namePlaceholder">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-2" data-translate="contact.form.email">Email</label>
+                            <input type="email" id="email" name="email" required
+                                   class="w-full px-4 py-3 rounded-xl glassmorphism border-0 focus:ring-2 focus:ring-electric-blue transition-all duration-300 bg-white/10 dark:bg-black/20"
+                                   data-translate-placeholder="contact.form.emailPlaceholder">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="subject" class="block text-sm font-medium mb-2" data-translate="contact.form.subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required
+                               class="w-full px-4 py-3 rounded-xl glassmorphism border-0 focus:ring-2 focus:ring-electric-blue transition-all duration-300 bg-white/10 dark:bg-black/20"
+                               data-translate-placeholder="contact.form.subjectPlaceholder">
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-sm font-medium mb-2" data-translate="contact.form.message">Message</label>
+                        <textarea id="message" name="message" rows="6" required
+                                  class="w-full px-4 py-3 rounded-xl glassmorphism border-0 focus:ring-2 focus:ring-electric-blue transition-all duration-300 resize-none bg-white/10 dark:bg-black/20"
+                                  data-translate-placeholder="contact.form.messagePlaceholder"></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" 
+                                class="px-8 py-4 bg-electric-blue text-white rounded-xl font-semibold hover:bg-electric-blue/90 transform hover:scale-105 transition-all duration-300 neon-glow"
+                                data-translate="contact.form.send">
+                            <i class="fas fa-paper-plane mr-2"></i>Send Message
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Contact Info -->
+                <div class="mt-12 pt-8 border-t border-white/10">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                        <div>
+                            <div class="w-12 h-12 bg-electric-blue/20 rounded-xl flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-envelope text-electric-blue"></i>
+                            </div>
+                            <h4 class="font-semibold mb-1" data-translate="contact.info.email">Email</h4>
+                            <p class="text-gray-600 dark:text-gray-300">alex@example.com</p>
+                        </div>
+                        <div>
+                            <div class="w-12 h-12 bg-purple-glow/20 rounded-xl flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-phone text-purple-glow"></i>
+                            </div>
+                            <h4 class="font-semibold mb-1" data-translate="contact.info.phone">Phone</h4>
+                            <p class="text-gray-600 dark:text-gray-300">+1 (555) 123-4567</p>
+                        </div>
+                        <div>
+                            <div class="w-12 h-12 bg-soft-cyan/20 rounded-xl flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-map-marker-alt text-soft-cyan"></i>
+                            </div>
+                            <h4 class="font-semibold mb-1" data-translate="contact.info.location">Location</h4>
+                            <p class="text-gray-600 dark:text-gray-300">San Francisco, CA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-gray-600 dark:text-gray-300 mb-4" data-translate="footer.copyright">
+                    © 2024 Alex Chen. All rights reserved.
+                </p>
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-electric-blue transition-colors duration-300">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-electric-blue transition-colors duration-300">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-electric-blue transition-colors duration-300">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-electric-blue transition-colors duration-300">
+                        <i class="fab fa-dribbble text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden">
+        <div class="glassmorphism backdrop-blur-lg px-4 py-2">
+            <div class="flex justify-around items-center">
+                <a href="#home" class="mobile-nav-link flex flex-col items-center py-2 px-3 rounded-lg transition-all duration-300">
+                    <i class="fas fa-home text-lg mb-1"></i>
+                    <span class="text-xs" data-translate="nav.home">Home</span>
+                </a>
+                <a href="#projects" class="mobile-nav-link flex flex-col items-center py-2 px-3 rounded-lg transition-all duration-300">
+                    <i class="fas fa-briefcase text-lg mb-1"></i>
+                    <span class="text-xs" data-translate="nav.projects">Projects</span>
+                </a>
+                <a href="#skills" class="mobile-nav-link flex flex-col items-center py-2 px-3 rounded-lg transition-all duration-300">
+                    <i class="fas fa-cog text-lg mb-1"></i>
+                    <span class="text-xs" data-translate="nav.skills">Skills</span>
+                </a>
+                <a href="#contact" class="mobile-nav-link flex flex-col items-center py-2 px-3 rounded-lg transition-all duration-300">
+                    <i class="fas fa-envelope text-lg mb-1"></i>
+                    <span class="text-xs" data-translate="nav.contact">Contact</span>
+                </a>
+                <button id="mobileThemeToggle" class="mobile-nav-link flex flex-col items-center py-2 px-3 rounded-lg transition-all duration-300">
+                    <i class="fas fa-moon dark:hidden text-lg mb-1"></i>
+                    <i class="fas fa-sun hidden dark:block text-lg mb-1"></i>
+                    <span class="text-xs" data-translate="nav.theme">Theme</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Theme Management
+            const themeToggle = document.getElementById('themeToggle');
+            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+            const html = document.documentElement;
+            
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                html.classList.add('dark');
+            }
+            
+            function toggleTheme() {
+                html.classList.toggle('dark');
+                const theme = html.classList.contains('dark') ? 'dark' : 'light';
+                localStorage.setItem('theme', theme);
+            }
+            
+            themeToggle.addEventListener('click', toggleTheme);
+            mobileThemeToggle.addEventListener('click', toggleTheme);
+            
+            // Language Management
+            const languages = {
+                en: {
+                    'nav.home': 'Home',
+                    'nav.projects': 'Projects',
+                    'nav.skills': 'Skills',
+                    'nav.contact': 'Contact',
+                    'nav.theme': 'Theme',
+                    'hero.name': 'Alex Chen',
+                    'hero.title': 'Frontend Developer & UI/UX Enthusiast',
+                    'hero.description': 'Crafting beautiful, performant web experiences with modern technologies. Passionate about clean code and exceptional user interfaces.',
+                    'hero.viewWork': 'View My Work',
+                    'hero.downloadResume': 'Download Resume',
+                    'projects.title': 'Featured Projects',
+                    'projects.subtitle': 'A collection of my recent work showcasing modern web development techniques and creative solutions.',
+                    'projects.filter.all': 'All',
+                    'projects.filter.react': 'React',
+                    'projects.filter.javascript': 'JavaScript',
+                    'projects.filter.css': 'CSS/HTML',
+                    'skills.title': 'Skills & Technologies',
+                    'skills.subtitle': 'A comprehensive overview of my technical expertise and the tools I use to create exceptional web experiences.',
+                    'skills.frontend.title': 'Frontend Development',
+                    'skills.styling.title': 'Styling & Design',
+                    'skills.tools.title': 'Tools & Technologies',
+                    'skills.techStack': 'Tech Stack',
+                    'contact.title': 'Get In Touch',
+                    'contact.subtitle': 'Ready to collaborate on your next project? Let\'s create something amazing together.',
+                    'contact.form.name': 'Name',
+                    'contact.form.email': 'Email',
+                    'contact.form.subject': 'Subject',
+                    'contact.form.message': 'Message',
+                    'contact.form.send': 'Send Message',
+                    'contact.info.email': 'Email',
+                    'contact.info.phone': 'Phone',
+                    'contact.info.location': 'Location',
+                    'footer.copyright': '© 2024 Alex Chen. All rights reserved.'
+                },
+                ru: {
+                    'nav.home': 'Главная',
+                    'nav.projects': 'Проекты',
+                    'nav.skills': 'Навыки',
+                    'nav.contact': 'Контакты',
+                    'nav.theme': 'Тема',
+                    'hero.name': 'Алекс Чен',
+                    'hero.title': 'Frontend Разработчик и UI/UX Энтузиаст',
+                    'hero.description': 'Создаю красивые, производительные веб-интерфейсы с использованием современных технологий. Увлекаюсь чистым кодом и исключительными пользовательскими интерфейсами.',
+                    'hero.viewWork': 'Посмотреть работы',
+                    'hero.downloadResume': 'Скачать резюме',
+                    'projects.title': 'Избранные проекты',
+                    'projects.subtitle': 'Коллекция моих недавних работ, демонстрирующих современные техники веб-разработки и креативные решения.',
+                    'projects.filter.all': 'Все',
+                    'projects.filter.react': 'React',
+                    'projects.filter.javascript': 'JavaScript',
+                    'projects.filter.css': 'CSS/HTML',
+                    'skills.title': 'Навыки и технологии',
+                    'skills.subtitle': 'Полный обзор моих технических знаний и инструментов, которые я использую для создания исключительных веб-интерфейсов.',
+                    'skills.frontend.title': 'Frontend разработка',
+                    'skills.styling.title': 'Стилизация и дизайн',
+                    'skills.tools.title': 'Инструменты и технологии',
+                    'skills.techStack': 'Стек технологий',
+                    'contact.title': 'Связаться со мной',
+                    'contact.subtitle': 'Готовы сотрудничать над вашим следующим проектом? Давайте создадим что-то удивительное вместе.',
+                    'contact.form.name': 'Имя',
+                    'contact.form.email': 'Email',
+                    'contact.form.subject': 'Тема',
+                    'contact.form.message': 'Сообщение',
+                    'contact.form.send': 'Отправить сообщение',
+                    'contact.info.email': 'Email',
+                    'contact.info.phone': 'Телефон',
+                    'contact.info.location': 'Местоположение',
+                    'footer.copyright': '© 2024 Алекс Чен. Все права защищены.'
+                },
+                uz: {
+                    'nav.home': 'Bosh sahifa',
+                    'nav.projects': 'Loyihalar',
+                    'nav.skills': 'Malakalar',
+                    'nav.contact': 'Aloqa',
+                    'nav.theme': 'Mavzu',
+                    'hero.name': 'Aleks Chen',
+                    'hero.title': 'Frontend Dasturchi va UI/UX Ishqibozi',
+                    'hero.description': 'Zamonaviy texnologiyalar yordamida chiroyli, samarali veb-tajribalarni yarataman. Toza kod va ajoyib foydalanuvchi interfeyslari bilan shug\'ullanaman.',
+                    'hero.viewWork': 'Ishlarimni ko\'rish',
+                    'hero.downloadResume': 'Rezyumeni yuklab olish',
+                    'projects.title': 'Tanlangan loyihalar',
+                    'projects.subtitle': 'Zamonaviy veb-dasturlash texnikalarini va ijodiy yechimlarni namoyish etuvchi so\'nggi ishlarim to\'plami.',
+                    'projects.filter.all': 'Barchasi',
+                    'projects.filter.react': 'React',
+                    'projects.filter.javascript': 'JavaScript',
+                    'projects.filter.css': 'CSS/HTML',
+                    'skills.title': 'Malakalar va texnologiyalar',
+                    'skills.subtitle': 'Ajoyib veb-tajribalar yaratish uchun foydalangan texnik bilimlarim va vositalarimning to\'liq ko\'rinishi.',
+                    'skills.frontend.title': 'Frontend dasturlash',
+                    'skills.styling.title': 'Uslub va dizayn',
+                    'skills.tools.title': 'Vositalar va texnologiyalar',
+                    'skills.techStack': 'Texnologiyalar to\'plami',
+                    'contact.title': 'Bog\'lanish',
+                    'contact.subtitle': 'Keyingi loyihangizda hamkorlik qilishga tayyormisiz? Keling, birgalikda ajoyib narsa yarataylik.',
+                    'contact.form.name': 'Ism',
+                    'contact.form.email': 'Email',
+                    'contact.form.subject': 'Mavzu',
+                    'contact.form.message': 'Xabar',
+                    'contact.form.send': 'Xabar yuborish',
+                    'contact.info.email': 'Email',
+                    'contact.info.phone': 'Telefon',
+                    'contact.info.location': 'Joylashuv',
+                    'footer.copyright': '© 2024 Aleks Chen. Barcha huquqlar himoyalangan.'
+                }
+            };
+            
+            const languageFlags = {
+                en: '🇺🇸',
+                ru: '🇷🇺',
+                uz: '🇺🇿'
+            };
+            
+            const languageNames = {
+                en: 'EN',
+                ru: 'RU',
+                uz: 'UZ'
+            };
+            
+            let currentLanguage = localStorage.getItem('language') || 'en';
+            
+            function updateLanguage(lang) {
+                currentLanguage = lang;
+                localStorage.setItem('language', lang);
+                
+                // Update flag and name
+                document.getElementById('currentFlag').textContent = languageFlags[lang];
+                document.getElementById('currentLang').textContent = languageNames[lang];
+                
+                // Update all translatable elements
+                document.querySelectorAll('[data-translate]').forEach(element => {
+                    const key = element.getAttribute('data-translate');
+                    if (languages[lang] && languages[lang][key]) {
+                        element.textContent = languages[lang][key];
+                    }
+                });
+                
+                // Update placeholders
+                document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+                    const key = element.getAttribute('data-translate-placeholder');
+                    if (languages[lang] && languages[lang][key]) {
+                        element.setAttribute('placeholder', languages[lang][key]);
+                    }
+                });
+            }
+            
+            // Initialize language
+            updateLanguage(currentLanguage);
+            
+            // Language dropdown functionality
+            const languageDropdown = document.getElementById('languageDropdown');
+            const languageMenu = document.getElementById('languageMenu');
+            
+            languageDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+                languageMenu.classList.toggle('opacity-0');
+                languageMenu.classList.toggle('invisible');
+            });
+            
+            document.addEventListener('click', function() {
+                languageMenu.classList.add('opacity-0');
+                languageMenu.classList.add('invisible');
+            });
+            
+            document.querySelectorAll('.lang-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    updateLanguage(lang);
+                    languageMenu.classList.add('opacity-0');
+                    languageMenu.classList.add('invisible');
+                });
+            });
+            
+            // Project filtering
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('bg-electric-blue', 'text-white'));
+                    this.classList.add('bg-electric-blue', 'text-white');
+                    
+                    // Filter projects
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeIn 0.5s ease-out';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Initialize first filter button as active
+            if (filterButtons.length > 0) {
+                filterButtons[0].classList.add('bg-electric-blue', 'text-white');
+            }
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Contact form handling
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Basic form validation
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const subject = document.getElementById('subject').value.trim();
+                const message = document.getElementById('message').value.trim();
+                
+                if (!name || !email || !subject || !message) {
+                    alert('Please fill in all fields.');
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+                
+                // TODO: Implement actual form submission logic
+                alert('Thank you for your message! I\'ll get back to you soon.');
+                contactForm.reset();
+            });
+            
+            // Resume download functionality
+            document.getElementById('downloadResume').addEventListener('click', function() {
+                // TODO: Implement actual resume download
+                alert('Resume download would be implemented here.');
+            });
+            
+            // Scroll effects for navbar
+            let lastScrollTop = 0;
+            const navbar = document.getElementById('navbar');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 100) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+                    navbar.style.backdropFilter = 'blur(20px)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.05)';
+                    navbar.style.backdropFilter = 'blur(10px)';
+                }
+                
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+            
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe project cards and skill items
+            document.querySelectorAll('.project-card, .skill-item').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(el);
+            });
+            
+        })();
+    </script>
+</body>
+</html>

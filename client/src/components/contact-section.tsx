@@ -122,19 +122,19 @@ export function ContactSection() {
       icon: Mail,
       color: 'var(--electric-blue)',
       title: t('contact.info.email'),
-      value: 'alex@example.com'
+      value: 'nuralivafoyev02@gmail.com'
     },
     {
       icon: Phone,
       color: 'var(--purple-glow)',
       title: t('contact.info.phone'),
-      value: '+1 (555) 123-4567'
+      value: '+998 90 806-57-75'
     },
     {
       icon: MapPin,
       color: 'var(--soft-cyan)',
       title: t('contact.info.location'),
-      value: 'San Francisco, CA'
+      value: 'Navoi shahar'
     }
   ];
 

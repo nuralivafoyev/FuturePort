@@ -5,7 +5,7 @@ export const translations = {
     'nav.skills': 'Skills',
     'nav.contact': 'Contact',
     'nav.theme': 'Theme',
-    'hero.name': 'Alex Chen',
+    'hero.name': 'Nurali vafoyev',
     'hero.title': 'Frontend Developer & UI/UX Enthusiast',
     'hero.description': 'Crafting beautiful, performant web experiences with modern technologies. Passionate about clean code and exceptional user interfaces.',
     'hero.viewWork': 'View My Work',
@@ -48,7 +48,7 @@ export const translations = {
     'contact.info.email': 'Email',
     'contact.info.phone': 'Phone',
     'contact.info.location': 'Location',
-    'footer.copyright': '© 2024 Alex Chen. All rights reserved.'
+    'footer.copyright': '© 2024 Nurali Vafoyev. All rights reserved.'
   },
   ru: {
     'nav.home': 'Главная',
@@ -56,7 +56,7 @@ export const translations = {
     'nav.skills': 'Навыки',
     'nav.contact': 'Контакты',
     'nav.theme': 'Тема',
-    'hero.name': 'Алекс Чен',
+    'hero.name': 'Нурали Вафоев',
     'hero.title': 'Frontend Разработчик и UI/UX Энтузиаст',
     'hero.description': 'Создаю красивые, производительные веб-интерфейсы с использованием современных технологий. Увлекаюсь чистым кодом и исключительными пользовательскими интерфейсами.',
     'hero.viewWork': 'Посмотреть работы',
@@ -99,7 +99,7 @@ export const translations = {
     'contact.info.email': 'Email',
     'contact.info.phone': 'Телефон',
     'contact.info.location': 'Местоположение',
-    'footer.copyright': '© 2024 Алекс Чен. Все права защищены.'
+    'footer.copyright': '© 2024 Нурали Вафоев. Все права защищены.'
   },
   uz: {
     'nav.home': 'Bosh sahifa',
@@ -107,7 +107,7 @@ export const translations = {
     'nav.skills': 'Malakalar',
     'nav.contact': 'Aloqa',
     'nav.theme': 'Mavzu',
-    'hero.name': 'Aleks Chen',
+    'hero.name': 'Nurali Vafoyev',
     'hero.title': 'Frontend Dasturchi va UI/UX Ishqibozi',
     'hero.description': 'Zamonaviy texnologiyalar yordamida chiroyli, samarali veb-tajribalarni yarataman. Toza kod va ajoyib foydalanuvchi interfeyslari bilan shug\'ullanaman.',
     'hero.viewWork': 'Ishlarimni ko\'rish',
@@ -150,7 +150,7 @@ export const translations = {
     'contact.info.email': 'Email',
     'contact.info.phone': 'Telefon',
     'contact.info.location': 'Joylashuv',
-    'footer.copyright': '© 2024 Aleks Chen. Barcha huquqlar himoyalangan.'
+    'footer.copyright': '© 2024 Nurali Vafoyev. Barcha huquqlar himoyalangan.'
   }
 };
 
